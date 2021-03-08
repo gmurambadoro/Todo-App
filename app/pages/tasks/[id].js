@@ -1,4 +1,5 @@
 import {useRouter} from "next/router";
+import {PageHeaderStyles} from "../../components/Styles";
 
 const Task = () => {
     const router = useRouter();
@@ -8,7 +9,7 @@ const Task = () => {
     // find task by id
 
 
-    return <h1>Task </h1>
+    return <PageHeaderStyles>Task </PageHeaderStyles>
 };
 
 export default Task;

@@ -3,6 +3,7 @@ import {doneLoading, startLoading} from "../../utils/ui";
 import {findTasks} from "../../models/tasks";
 import Task from "../../components/Task";
 import Page from "../../components/Page";
+import {PageHeaderStyles} from "../../components/Styles";
 
 const Tasks = () => {
     const [tasks, setTasks] = useState([]);
@@ -17,7 +18,7 @@ const Tasks = () => {
 
     return (
         <Page>
-            <h3>Tasks</h3>
+            <PageHeaderStyles>Tasks</PageHeaderStyles>
 
             {tasks.map(task => <Task key={task.id} task={task} />)}
         </Page>
