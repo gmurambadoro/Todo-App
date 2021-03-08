@@ -18,4 +18,4 @@ try {
 
 export const fire = firebase;
 
-export const COLLECTION_NAME_TASKS = 'tasks';
+export const TASKS_COLLECTION = 'tasks';
