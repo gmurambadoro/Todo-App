@@ -23,3 +23,7 @@ export const createTask = async ({ name, description, done, createdAt = new Date
         createdAt,
     });
 };
+
+export const deleteTask = async (id) => {
+    return await fire.firestore().collection(TASKS_COLLECTION).doc(id).delete();
+};
