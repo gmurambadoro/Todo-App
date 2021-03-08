@@ -4,7 +4,6 @@ import {deleteTask, findTasks, updateTaskStatus} from "../../models/tasks";
 import Task from "../../components/Task";
 import Page from "../../components/Page";
 import {PageHeaderStyles} from "../../components/Styles";
-import {useRouter} from "next/router";
 
 const Tasks = () => {
     const [tasks, setTasks] = useState([]);
@@ -13,7 +12,29 @@ const Tasks = () => {
         startLoading();
 
         findTasks()
-            .then(data => setTasks([...data]))
+            .then(data => {
+                data.sort((prev, next) => {
+                    if (prev.done) {
+                        return 1;
+                    }
+
+                    return -1;
+                });
+
+                data.sort((prev, next) => {
+                    if (prev.createdAt < next.createdAt) {
+                        return 1;
+                    }
+
+                    if (prev.createdAt > next.createdAt) {
+                        return -1;
+                    }
+
+                    return 0;
+                });
+
+                setTasks([...data])
+            })
             .finally(() => doneLoading());
     };
 

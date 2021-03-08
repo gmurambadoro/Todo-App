@@ -5,7 +5,6 @@ import {useState} from "react";
 const AddTaskForm = ({ onTaskAdded, cancelRoute = '/' }) => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
-    const [done, setDone] = useState(false);
 
     const clearForm = () => {};
 
@@ -15,7 +14,7 @@ const AddTaskForm = ({ onTaskAdded, cancelRoute = '/' }) => {
         const task = {
             name,
             description,
-            done,
+            done: false,
         };
 
         onTaskAdded(task);
@@ -49,14 +48,6 @@ const AddTaskForm = ({ onTaskAdded, cancelRoute = '/' }) => {
                 <Form.Text className="text-muted">
                     Additional information about the task e.g. steps to take, links to follow.
                 </Form.Text>
-            </Form.Group>
-
-            <Form.Group controlId="taskCompleted">
-                <Form.Check
-                    value={done}
-                    onChange={event => setDone(!!event.target.checked)}
-                    type="checkbox"
-                    label="Task completed" />
             </Form.Group>
 
             <Form.Group>
