@@ -15,10 +15,11 @@ export const findTasks = async () => {
     return documents;
 };
 
-export const createTask = async ({ name, description, createdAt = new Date() }) => {
+export const createTask = async ({ name, description, done, createdAt = new Date() }) => {
     await fire.firestore().collection(TASKS_COLLECTION).add({
         name,
         description,
+        done,
         createdAt,
     });
 };

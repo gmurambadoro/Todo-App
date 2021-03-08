@@ -1,8 +1,8 @@
 import {Button, Form} from "react-bootstrap";
 import {useState} from "react";
 
-const AddTaskForm = () => {
-    const [title, setTitle] = useState('');
+const AddTaskForm = ({ onTaskAdded }) => {
+    const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [done, setDone] = useState(false);
 
@@ -10,6 +10,14 @@ const AddTaskForm = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        const task = {
+            name,
+            description,
+            done,
+        };
+
+        onTaskAdded(task);
 
         clearForm();
     };
@@ -20,8 +28,8 @@ const AddTaskForm = () => {
                 <Form.Label>Title</Form.Label>
                 <Form.Control
                     required
-                    value={title}
-                    onChange={event => setTitle(event.target.value)}
+                    value={name}
+                    onChange={event => setName(event.target.value)}
                     placeholder="Title"
                 />
                 <Form.Text className="text-muted">
