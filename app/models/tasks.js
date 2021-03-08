@@ -27,3 +27,9 @@ export const createTask = async ({ name, description, done, createdAt = new Date
 export const deleteTask = async (id) => {
     return await fire.firestore().collection(TASKS_COLLECTION).doc(id).delete();
 };
+
+export const updateTaskStatus = async (id, isDone) => {
+    const doc = fire.firestore().collection(TASKS_COLLECTION).doc(id);
+
+    await doc.set({ done: isDone }, { merge: true });
+};

@@ -1,8 +1,8 @@
 import {Button, Card, Col, Form, Row} from "react-bootstrap";
 import {useState} from "react";
 
-const Task = ({ task, handleDelete }) => {
-    const [done, setDone] = useState(!!task.done);
+const Task = ({ task, handleDelete, handleDone }) => {
+    const [done, setDone] = useState(task.done);
 
     const handleChange = event => {
         event.preventDefault();
@@ -11,7 +11,7 @@ const Task = ({ task, handleDelete }) => {
 
         setDone(isDone);
 
-        // submit done status
+        handleDone(task.id, isDone);
     };
 
     return (
@@ -40,7 +40,7 @@ const Task = ({ task, handleDelete }) => {
                             variant={"danger"}
                             type={"button"}
                             onClick={() => {
-                                if (confirm(`Are you sure you want to delete Task # ${task.id + ' - ' + task.name}`)) {
+                                if (confirm(`Are you sure you want to delete Task # ${task.id}`)) {
                                     handleDelete(task.id);
                                 }
                             }}>

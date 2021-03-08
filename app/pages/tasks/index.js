@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {doneLoading, startLoading} from "../../utils/ui";
-import {deleteTask, findTasks} from "../../models/tasks";
+import {deleteTask, findTasks, updateTaskStatus} from "../../models/tasks";
 import Task from "../../components/Task";
 import Page from "../../components/Page";
 import {PageHeaderStyles} from "../../components/Styles";
@@ -30,11 +30,21 @@ const Tasks = () => {
         });
     };
 
+    const handleTaskStatusChanged = (id, isDone) => {
+        startLoading();
+
+        updateTaskStatus(id, isDone).finally(() => {
+            doneLoading();
+
+            refresh();
+        })
+    };
+
     return (
         <Page>
             <PageHeaderStyles>Tasks</PageHeaderStyles>
 
-            {tasks.map(task => <Task key={task.id} task={task} handleDelete={handleDeleteTask} />)}
+            {tasks.map(task => <Task key={task.id} task={task} handleDelete={handleDeleteTask} handleDone={handleTaskStatusChanged} />)}
         </Page>
     );
 };
