@@ -24,7 +24,9 @@ const Task = ({ task, handleDelete, handleDone }) => {
                             {task.done ? (<strike>{task.name}</strike>) : task.name}
                         </p>
 
-                        {task.description && <p><span className={"text-muted small"}>{task.description}</span></p>}
+                        {task.description && (<p className={"text-muted small"}>
+                            {task.done ? <strike>{task.description}</strike> : task.description}
+                        </p>)}
                     </Col>
                     <Col>
                         <Form.Check
