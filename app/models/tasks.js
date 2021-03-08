@@ -1,20 +1,21 @@
-import {COLLECTION_TASKS, fire} from "../config/firebase-config";
+import {COLLECTION_NAME_TASKS, fire} from "../config/firebase-config";
 
 export const findManyTasks = async () => {
-    let documents = [];
+    const snapshot = await fire.firestore().collection(COLLECTION_NAME_TASKS).get()
 
-    await fire.firestore().collection(COLLECTION_TASKS).onSnapshot(snapshot => {
-        const docs =  snapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data(),
-        }));
+    const documents = [];
 
-        documents = [...docs];
+    snapshot.forEach(doc => {
+        documents.push(doc.data());
     });
 
     return documents;
 };
 
-export const createOneTask = async ({ task }) => {
-    await fire.firestore().collection(COLLECTION_TASKS).add(task);
+export const createOneTask = async ({ name, description, createdAt = new Date() }) => {
+    await fire.firestore().collection(COLLECTION_NAME_TASKS).add({
+        name,
+        description,
+        createdAt,
+    });
 };
