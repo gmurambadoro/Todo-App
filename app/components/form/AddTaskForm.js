@@ -1,7 +1,8 @@
+import Link from "next/link";
 import {Button, Form} from "react-bootstrap";
 import {useState} from "react";
 
-const AddTaskForm = ({ onTaskAdded }) => {
+const AddTaskForm = ({ onTaskAdded, cancelRoute = '/' }) => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [done, setDone] = useState(false);
@@ -58,9 +59,15 @@ const AddTaskForm = ({ onTaskAdded }) => {
                     label="Task completed" />
             </Form.Group>
 
-            <Button variant="success" type="submit">
-                Save
-            </Button>
+            <Form.Group>
+                <Link href={cancelRoute} passHref>
+                    <Button type={"button"} className={"mr-1"} variant={"secondary"}>Cancel</Button>
+                </Link>
+
+                <Button variant="success" type="submit">
+                    Save
+                </Button>
+            </Form.Group>
         </Form>
     );
 };

@@ -1,5 +1,6 @@
-import {Button, Card, Col, Form, Row} from "react-bootstrap";
+import {Card, Col, Form, Row} from "react-bootstrap";
 import {useState} from "react";
+import {ClickableStyles} from "./Styles";
 
 const Task = ({ task, handleDelete, handleDone }) => {
     const [done, setDone] = useState(task.done);
@@ -35,17 +36,17 @@ const Task = ({ task, handleDelete, handleDone }) => {
                     </Col>
 
                     <Col>
-                        <Button
-                            className={"small"}
-                            variant={"danger"}
-                            type={"button"}
-                            onClick={() => {
-                                if (confirm(`Are you sure you want to delete Task # ${task.id}`)) {
-                                    handleDelete(task.id);
-                                }
-                            }}>
-                            &times;
-                        </Button>
+                        <ClickableStyles className={"text-danger float-right"}>
+                            <span
+                                className={"small"}
+                                onClick={() => {
+                                    if (confirm(`Are you sure you want to delete Task # ${task.id}`)) {
+                                        handleDelete(task.id);
+                                    }
+                                }}>
+                                <strong>&times;</strong>
+                            </span>
+                        </ClickableStyles>
                     </Col>
                 </Row>
 

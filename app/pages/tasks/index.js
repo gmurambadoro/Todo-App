@@ -8,7 +8,6 @@ import {useRouter} from "next/router";
 
 const Tasks = () => {
     const [tasks, setTasks] = useState([]);
-    const router = useRouter();
 
     const refresh = () => {
         startLoading();
@@ -45,6 +44,8 @@ const Tasks = () => {
             <PageHeaderStyles>Tasks</PageHeaderStyles>
 
             {tasks.map(task => <Task key={task.id} task={task} handleDelete={handleDeleteTask} handleDone={handleTaskStatusChanged} />)}
+
+            {!tasks.length && <p>There are no tasks!</p>}
         </Page>
     );
 };
