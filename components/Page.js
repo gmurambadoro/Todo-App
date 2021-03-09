@@ -9,12 +9,12 @@ import {useRouter} from "next/router";
 const Page = ({ children }) => {
     const router = useRouter();
 
-    const { uid } = useUser() || { uid: null };
+    const { uid, email } = useUser() || { uid: null, email: null };
 
     return (
         <React.Fragment>
             <header>
-                <Navbar bg="light" expand="lg" className={"mb-2"}>
+                <Navbar bg={"dark"} variant={"dark"} expand="lg" className={"mb-2"}>
                     <Navbar.Brand as={"span"}>{PROJECT_NAME}</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
@@ -50,9 +50,15 @@ const Page = ({ children }) => {
                             )}
                         </Nav>
                         {uid && (
-                            <Link href={"/tasks/new"} passHref>
-                                <Button type={"button"} variant="outline-secondary">Add Task</Button>
-                            </Link>
+                            <>
+                                <Navbar.Text className={"mr-2"}>
+                                    Signed in as: {email}
+                                </Navbar.Text>
+
+                                <Link href={"/tasks/new"} passHref>
+                                    <Button type={"button"} variant="outline-success">Add Task</Button>
+                                </Link>
+                            </>
                         )}
                     </Navbar.Collapse>
                 </Navbar>
