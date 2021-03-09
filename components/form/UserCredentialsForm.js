@@ -2,7 +2,7 @@ import {Button, Form} from "react-bootstrap";
 import Link from "next/link";
 import {useState} from "react";
 
-const RegisterForm = ({ cancelRoute, handleRegisterUser }) => {
+const UserCredentialsForm = ({ cancelRoute, handleCredentials, isRegister = false }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -14,7 +14,7 @@ const RegisterForm = ({ cancelRoute, handleRegisterUser }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        handleRegisterUser({
+        handleCredentials({
             email,
             password,
         });
@@ -30,10 +30,10 @@ const RegisterForm = ({ cancelRoute, handleRegisterUser }) => {
                     required
                     value={email}
                     onChange={event => setEmail(event.target.value)}
-                    placeholder="Email"
+                    placeholder="Email address"
                 />
                 <Form.Text className="text-muted">
-                    Email address - will be used to login
+                    Email address
                 </Form.Text>
             </Form.Group>
 
@@ -57,11 +57,11 @@ const RegisterForm = ({ cancelRoute, handleRegisterUser }) => {
                 </Link>
 
                 <Button variant="success" type="submit">
-                    Register
+                    {isRegister ? 'Register' : 'Login' }
                 </Button>
             </Form.Group>
         </Form>
     );
 };
 
-export default RegisterForm;
+export default UserCredentialsForm;

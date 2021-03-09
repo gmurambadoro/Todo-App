@@ -4,6 +4,7 @@ import {deleteTask, findTasks, updateTaskStatus} from "../../models/tasks";
 import Task from "../../components/Task";
 import Page from "../../components/Page";
 import {PageHeaderStyles} from "../../components/Styles";
+import PleaseLogin from "../../components/PleaseLogin";
 
 const Tasks = () => {
     const [tasks, setTasks] = useState([]);
@@ -61,13 +62,15 @@ const Tasks = () => {
     };
 
     return (
-        <Page>
-            <PageHeaderStyles>Tasks</PageHeaderStyles>
+        <PleaseLogin>
+            <Page>
+                <PageHeaderStyles>Tasks</PageHeaderStyles>
 
-            {tasks.map(task => <Task key={task.id} task={task} handleDelete={handleDeleteTask} handleDone={handleTaskStatusChanged} />)}
+                {tasks.map(task => <Task key={task.id} task={task} handleDelete={handleDeleteTask} handleDone={handleTaskStatusChanged} />)}
 
-            {!tasks.length && <p>There are no tasks!</p>}
-        </Page>
+                {!tasks.length && <p>There are no tasks!</p>}
+            </Page>
+        </PleaseLogin>
     );
 };
 

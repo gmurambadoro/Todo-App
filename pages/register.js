@@ -1,7 +1,7 @@
 import {useRouter} from "next/router";
 import Page from "../components/Page";
 import {PageHeaderStyles} from "../components/Styles";
-import RegisterForm from "../components/form/RegisterForm";
+import UserCredentialsForm from "../components/form/UserCredentialsForm";
 import {fire} from "../config/firebase-config";
 import {doneLoading, startLoading} from "../utils/ui";
 
@@ -33,7 +33,11 @@ const Register = () => {
         <Page>
             <PageHeaderStyles>Register</PageHeaderStyles>
 
-            <RegisterForm cancelRoute={"/"} handleRegisterUser={handleRegisterUser} />
+            <UserCredentialsForm
+                isRegister={true}
+                cancelRoute={"/"}
+                handleCredentials={handleRegisterUser}
+            />
         </Page>
     );
 };

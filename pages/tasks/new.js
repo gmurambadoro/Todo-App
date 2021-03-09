@@ -4,6 +4,7 @@ import {PageHeaderStyles} from "../../components/Styles";
 import {doneLoading, startLoading} from "../../utils/ui";
 import {createTask} from "../../models/tasks";
 import {useRouter} from "next/router";
+import PleaseLogin from "../../components/PleaseLogin";
 
 const NewTask = () => {
     const router = useRouter();
@@ -19,13 +20,15 @@ const NewTask = () => {
     };
 
     return (
-        <Page>
-            <PageHeaderStyles>Add Task</PageHeaderStyles>
+        <PleaseLogin>
+            <Page>
+                <PageHeaderStyles>Add Task</PageHeaderStyles>
 
-            <hr />
+                <hr />
 
-            <AddTaskForm onTaskAdded={handleTaskAdded} />
-        </Page>
+                <AddTaskForm onTaskAdded={handleTaskAdded} />
+            </Page>
+        </PleaseLogin>
     );
 };
 
