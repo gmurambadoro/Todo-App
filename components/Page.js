@@ -15,6 +15,9 @@ const Page = ({ children }) => {
                             <Link href={"/"} passHref>
                                 <Nav.Link>Tasks</Nav.Link>
                             </Link>
+                            <Link href={"/register"} passHref>
+                                <Nav.Link>Register</Nav.Link>
+                            </Link>
                         </Nav>
                         <Link href={"/tasks/new"} passHref>
                             <Button type={"button"} variant="outline-secondary">Add Task</Button>
